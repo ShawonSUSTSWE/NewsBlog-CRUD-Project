@@ -1,5 +1,6 @@
 const dbConnection = require("../config/db_config");
 const { v4: uuidv4 } = require("uuid");
+const bcrypt = require("bcrypt");
 
 class User {
   constructor(name, email, password, dept, avatar) {
@@ -11,14 +12,17 @@ class User {
     this.avatar = avatar;
   }
   static createUser(newUser, result) {
-    dbConnection.query("INSERT INTO tbl_user SET ?", newUser, (err, res) => {
-      if (err) {
-        console.log("Error: ", err);
-        result(err, null);
-      } else {
-        console.log("User created Successfully");
-        result(null, res);
-      }
+    bcrypt.hash(newUser.password, 12).then((hash) => {
+      newUser.password = hash;
+      dbConnection.query("INSERT INTO tbl_user SET ?", newUser, (err, res) => {
+        if (err) {
+          console.log("Error: ", err);
+          result(err, null);
+        } else {
+          console.log("User created Successfully");
+          result(null, res);
+        }
+      });
     });
   }
   static findbyEmail(email, result) {
