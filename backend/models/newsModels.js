@@ -1,14 +1,13 @@
 const dbConnection = require("../config/db_config");
-const { v4: uuid } = require("uuid");
+const { v4: uuidv4 } = require("uuid");
 
 class News {
-  constructor(news) {
-    this.userID = uuidv4();
-    this.title = news.title;
-    this.category = news.category;
-    this.timedate = news.timedate;
-    this.content = news.content;
-    this.image = news.image;
+  constructor(title, category, content, image) {
+    this.newsID = uuidv4();
+    this.title = title;
+    this.category = category;
+    this.content = content;
+    this.image = image;
   }
 }
 
