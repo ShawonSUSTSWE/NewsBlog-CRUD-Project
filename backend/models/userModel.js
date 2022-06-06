@@ -25,10 +25,11 @@ class User {
       });
     });
   }
-  static findbyEmail(email, result) {
+  static findbyID(id, result) {
+    console.log(`ID: ${id}`);
     dbConnection.query(
-      "SELECT * FROM tbl_user WHERE email = ?",
-      email,
+      "SELECT * FROM tbl_user WHERE userID = ?",
+      id,
       (err, res) => {
         if (err) {
           console.log(err);
