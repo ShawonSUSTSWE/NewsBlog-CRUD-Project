@@ -37,11 +37,38 @@ exports.getUsers = (req, res, next) => {
 exports.getUser = (req, res, next) => {
   User.findbyID(req.params.uuid, (err, user) => {
     if (err) {
-      res.status(400).send(err);
+      res.status(400).json(err);
     } else {
       res.status(200).json(user);
     }
   });
 };
 
-exports.logIn = (req, res, next) => {};
+exports.logIn = (req, res, next) => {
+  checker(validationResult(req));
+  const { email, password } = req.body;
+  User.searchForEmail(email, password, (err, res_db) => {
+    if (err) {
+      res.status(400).json({
+        Error: "Bad Request",
+      });
+    }
+    if (!res_db) {
+      res.status(401).json({
+        success: 0,
+        data: "Invalid email or password",
+      });
+    } else {
+      if (!bcrypt.compareSync(password, res_db.password)) {
+        res.status(401).json({
+          success: 0,
+          data: "Invalid email or password",
+        });
+      } else {
+        res.status(200).json({
+          message: "Signed in!!",
+        });
+      }
+    }
+  });
+};

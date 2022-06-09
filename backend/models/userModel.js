@@ -1,6 +1,7 @@
 const dbConnection = require("../config/db_config");
 const { v4: uuidv4 } = require("uuid");
 const bcrypt = require("bcrypt");
+const { json } = require("express/lib/response");
 
 class User {
   constructor(name, email, password, dept, avatar) {
@@ -39,6 +40,20 @@ class User {
         }
       }
     );
+  }
+  static searchForEmail(email, password, result) {
+    const myQuery = "SELECT * FROM tbl_user WHERE email = ?";
+    dbConnection.query(myQuery, email, (err, res, field) => {
+      if (err) {
+        console.log("error: ", err);
+        result(err, null);
+      } else {
+        if (res[0]) {
+          //console.log(bcrypt.compareSync(res[0].password, password));
+        }
+        result(null, res[0]);
+      }
+    });
   }
   static getUsers(result) {
     dbConnection.query("Select * from tbl_user", (err, res) => {
