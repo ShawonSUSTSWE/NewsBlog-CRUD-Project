@@ -1,12 +1,15 @@
 "use strict";
 
 const News = require("../models/newsModels");
+const { validationResult } = require("express-validator");
+const { checker } = require("../utils/validationChecker");
 
 exports.publishNews = (req, res, next) => {
   checker(validationResult(req));
   const { title, category, content, image } = req.body;
-  const news = new News(title, category, content, image);
-  console.log(news);
+  const user = req.userData;
+  console.log(user);
+  const news = new News(title, category, content, image, user.uuid);
   News.publishNews(news, (err, result) => {
     if (err) {
       res.status(500).send(err);

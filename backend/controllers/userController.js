@@ -1,10 +1,9 @@
 "use strict";
-
 const bcrypt = require("bcrypt");
 const User = require("../models/userModel");
 const { validationResult } = require("express-validator");
 const { checker } = require("../utils/validationChecker");
-const dbConnection = require("../config/db_config");
+const jsonwebtoken = require("jsonwebtoken");
 
 exports.createUser = (req, res, next) => {
   checker(validationResult(req));
@@ -65,8 +64,21 @@ exports.logIn = (req, res, next) => {
           data: "Invalid email or password",
         });
       } else {
+        console.log(res_db);
+        let token = jsonwebtoken.sign(
+          {
+            userID: res_db.userID,
+            email: res_db.email,
+            name: res_db.name,
+          },
+          process.env.JWT_KEY,
+          {
+            expiresIn: "7d",
+          }
+        );
         res.status(200).json({
           message: "Signed in!!",
+          token: token,
         });
       }
     }
