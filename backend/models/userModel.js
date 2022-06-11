@@ -1,7 +1,6 @@
 const dbConnection = require("../config/db_config");
 const { v4: uuidv4 } = require("uuid");
 const bcrypt = require("bcrypt");
-const { json } = require("express/lib/response");
 
 class User {
   constructor(name, email, password, dept, avatar) {

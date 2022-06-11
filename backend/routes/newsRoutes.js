@@ -1,5 +1,4 @@
 const express = require("express");
-const router = express.Router();
 const newsController = require("../controllers/newsController");
 const { authenticate } = require("../utils/authenticate");
 const {
@@ -7,14 +6,15 @@ const {
   newsUpdateValidator,
 } = require("../utils/newsValidator");
 
+const router = express.Router();
 router.get("/", newsController.getAllNews);
+router.get("/:uuid", newsController.getNewsbyUser);
 
-//router.use(authenticate);
-router.post("/", newsPublishValidator, newsController.publishNews);
+router.use(authenticate);
 
 router
-  .route("/:uuid")
-  .get(newsController.getNewsbyUser)
+  .route("/")
+  .post(newsPublishValidator, newsController.publishNews)
   .put(newsUpdateValidator, newsController.updateNews);
 router.delete("/:uuid", newsController.deleteNews);
 
