@@ -84,3 +84,39 @@ exports.logIn = (req, res, next) => {
     }
   });
 };
+
+exports.updateUser = (req, res, next) => {
+  //checker(validationResult(req));
+  const { userID } = req.userData;
+  const { name, oldPassword, newPassword, dept, avatar } = req.body;
+  User.findbyID(userID, (err, user) => {
+    if (err) {
+      res.status(400).json(err);
+    } else {
+      //console.log(user.password);
+      if (newPassword) {
+        if (bcrypt.compareSync(oldPassword, user.password)) {
+          user.password = bcrypt.hashSync(newPassword, 12);
+          console.log(user.password);
+        } else {
+          res.status(401).json({
+            Message: "Password does not match",
+          });
+        }
+      }
+      if (name) {
+        user.name = name;
+      }
+      if (dept) {
+        user.dept = dept;
+      }
+      //console.log(avatar);
+      if (avatar) {
+        //console.log(avatar);
+        user.avatar = avatar;
+      }
+    }
+    //console.log(`${dept}  ${avatar}`);
+    //console.log(user);
+  });
+};

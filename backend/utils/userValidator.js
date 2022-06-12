@@ -7,3 +7,17 @@ exports.userCreationValidator = [
     min: 6,
   }),
 ];
+
+exports.userUpdateValidator = [
+  check(
+    "newPassword",
+    "Password must be at least 6 characters long and different than the old one"
+  ).custom((val, { req }) => {
+    if (
+      !req.body.oldPassword ||
+      (val !== req.body.oldPassword && val.length >= 6)
+    )
+      return true;
+    throw new Error();
+  }),
+];

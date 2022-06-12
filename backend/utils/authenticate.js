@@ -12,6 +12,7 @@ exports.authenticate = (req, res, next) => {
     next();
   } catch (err) {
     console.log(err);
+    return next(new Error("Not able to log you in"));
   }
 };
 

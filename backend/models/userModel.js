@@ -14,6 +14,7 @@ class User {
   static createUser(newUser, result) {
     bcrypt.hash(newUser.password, 12).then((hash) => {
       newUser.password = hash;
+      console.log(newUser.password);
       dbConnection.query("INSERT INTO tbl_user SET ?", newUser, (err, res) => {
         if (err) {
           console.log("Error: ", err);
@@ -35,7 +36,7 @@ class User {
           console.log(err);
           result(err, null);
         } else {
-          result(null, res);
+          result(null, res[0]);
         }
       }
     );
