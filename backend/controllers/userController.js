@@ -86,26 +86,39 @@ exports.logIn = (req, res, next) => {
 };
 
 exports.updateUser = (req, res, next) => {
-  //checker(validationResult(req));
+  let testPassed = true;
   const { userID } = req.userData;
   const { name, oldPassword, newPassword, dept, avatar } = req.body;
   User.findbyID(userID, (err, user) => {
     if (err) {
-      res.status(400).json(err);
+      res.status(404).json(err);
     } else {
       //console.log(user.password);
       if (newPassword) {
         if (bcrypt.compareSync(oldPassword, user.password)) {
-          user.password = bcrypt.hashSync(newPassword, 12);
-          console.log(user.password);
+          if (oldPassword === newPassword) {
+            res.status(400).json({
+              message: "New password should not match your old password",
+            });
+            testPassed = false;
+          } else if (newPassword.length < 6) {
+            res.status(400).json({
+              message: "New password should at least be 6 character long",
+            });
+            testPassed = false;
+          } else {
+            user.password = bcrypt.hashSync(newPassword, 12);
+          }
         } else {
           res.status(401).json({
             Message: "Password does not match",
           });
+          testPassed = false;
         }
       }
       if (name) {
         user.name = name;
+        //console.log(name);
       }
       if (dept) {
         user.dept = dept;
@@ -117,6 +130,6 @@ exports.updateUser = (req, res, next) => {
       }
     }
     //console.log(`${dept}  ${avatar}`);
-    //console.log(user);
+    console.log(user);
   });
 };

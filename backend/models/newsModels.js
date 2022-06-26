@@ -21,8 +21,21 @@ class News {
       }
     });
   }
+  static getNewsbyID(id, result) {
+    dbConnection.query(
+      "SELECT * FROM tbl_news WHERE newsID = ?",
+      id,
+      (err, res) => {
+        if (err) {
+          console.log(err);
+          result(err, null);
+        } else {
+          result(null, res);
+        }
+      }
+    );
+  }
   static getNewsbyUser(id, result) {
-    console.log(`ID: ${id}`);
     dbConnection.query(
       "SELECT * FROM tbl_news WHERE creatorID = ?",
       id,

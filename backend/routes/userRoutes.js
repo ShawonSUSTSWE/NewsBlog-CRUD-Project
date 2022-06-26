@@ -11,7 +11,7 @@ router
   .route("/")
   .get(userController.getUsers)
   .post(userCreationValidator, userController.createUser)
-  .put(authenticate, userUpdateValidator, userController.updateUser);
+  .put(authenticate, userController.updateUser);
 
 router.get("/:uuid", userController.getUser);
 router.post("/login", userController.logIn);

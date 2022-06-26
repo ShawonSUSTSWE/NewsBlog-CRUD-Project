@@ -43,5 +43,14 @@ exports.getNewsbyUser = (req, res, next) => {
   });
 };
 
-exports.deleteNews = (req, res, next) => {};
+exports.deleteNews = (req, res, next) => {
+  const uuid = req.params.uuid;
+  const user = req.userData;
+
+  News.getNewsbyID(req.params.uuid, (err, res) => {
+    if (res) {
+      console.log("Response: ", res);
+    }
+  });
+};
 exports.updateNews = (req, res, next) => {};
