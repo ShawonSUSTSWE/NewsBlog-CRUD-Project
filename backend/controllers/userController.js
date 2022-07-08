@@ -5,6 +5,10 @@ const { validationResult } = require("express-validator");
 const { checker } = require("../utils/validationChecker");
 const jsonwebtoken = require("jsonwebtoken");
 
+// sendError(res, statuscode, message) {
+
+// }
+
 exports.createUser = (req, res, next) => {
   checker(validationResult(req));
   const { name, email, password, dept, avatar } = req.body;
@@ -15,7 +19,7 @@ exports.createUser = (req, res, next) => {
       res.status(500).send(err);
     } else {
       res.status(201).json({
-        status: "success",
+        message: "Successfully created",
         data: resultuser,
       });
     }
@@ -93,7 +97,6 @@ exports.updateUser = (req, res, next) => {
     if (err) {
       res.status(404).json(err);
     } else {
-      //console.log(user.password);
       if (newPassword) {
         if (bcrypt.compareSync(oldPassword, user.password)) {
           if (oldPassword === newPassword) {
@@ -118,18 +121,25 @@ exports.updateUser = (req, res, next) => {
       }
       if (name) {
         user.name = name;
-        //console.log(name);
       }
       if (dept) {
         user.dept = dept;
       }
-      //console.log(avatar);
       if (avatar) {
-        //console.log(avatar);
         user.avatar = avatar;
       }
+      if (testPassed) {
+        User.updateUser(user, (error, updateUser) => {
+          if (error) {
+            res.status(500).send(err);
+          } else {
+            res.status(200).json({
+              message: "Successfully updated",
+              data: updateUser,
+            });
+          }
+        });
+      }
     }
-    //console.log(`${dept}  ${avatar}`);
-    console.log(user);
   });
 };

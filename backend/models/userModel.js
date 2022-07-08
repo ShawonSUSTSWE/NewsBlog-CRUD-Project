@@ -80,6 +80,21 @@ class User {
       }
     );
   }
+  static updateUser(user, result) {
+    dbConnection.query(
+      "UPDATE tbl_user SET name = ?, password = ?, dept = ?, avatar = ? WHERE userID = ?",
+      [user.name, user.password, user.dept, user.avatar, user.userID],
+      (err, res) => {
+        if (err) {
+          console.log("ERROR: ", err);
+          result(err, null);
+        } else {
+          console.log("User updated successfully");
+          result(null, res[0]);
+        }
+      }
+    );
+  }
 }
 
 module.exports = User;
