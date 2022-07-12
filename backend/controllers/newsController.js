@@ -44,12 +44,28 @@ exports.getNewsbyUser = (req, res, next) => {
 };
 
 exports.deleteNews = (req, res, next) => {
-  const uuid = req.params.uuid;
-  const user = req.userData;
+  const newsID = req.params.uuid;
+  const { userID } = req.userData;
 
-  News.getNewsbyID(req.params.uuid, (err, res) => {
-    if (res) {
-      console.log("Response: ", res);
+  News.getNewsbyID(newsID, (err, searchResponse) => {
+    if (searchResponse) {
+      if (searchResponse.creatorID === userID) {
+        News.delete(newsID, (error, deleteResponse) => {
+          if (deleteResponse) {
+            res.status(200).json({
+              message: "Deleted Successfully",
+            });
+          }
+        });
+      } else {
+        res.status(401).json({
+          message: "You are not authorized to do this",
+        });
+      }
+    } else {
+      res.status(404).json({
+        message: "No news found",
+      });
     }
   });
 };

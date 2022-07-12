@@ -30,7 +30,7 @@ class News {
           console.log(err);
           result(err, null);
         } else {
-          result(null, res);
+          result(null, res[0]);
         }
       }
     );
@@ -62,12 +62,12 @@ class News {
   }
   static delete(id, result) {
     dbConnection.query(
-      "DELETE FROM tbl_news WHERE id = ?",
+      "DELETE FROM tbl_news WHERE newsID = ?",
       [id],
       (err, res) => {
         if (err) {
           console.log("error: ", err);
-          result(null, err);
+          result(err, null);
         } else {
           result(null, res);
         }
