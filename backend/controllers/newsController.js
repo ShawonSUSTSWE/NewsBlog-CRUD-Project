@@ -69,4 +69,46 @@ exports.deleteNews = (req, res, next) => {
     }
   });
 };
-exports.updateNews = (req, res, next) => {};
+
+exports.updateNews = (req, res, next) => {
+  const { userID } = req.userData;
+  const newsID = req.params.uuid;
+  const { title, category, content, image } = req.body;
+  News.getNewsbyID(newsID, (searchError, news) => {
+    if (news) {
+      if (news.creatorID === userID) {
+        if (title) {
+          news.title = title;
+        }
+        if (category) {
+          news.category = category;
+        }
+        if (content) {
+          news.content = content;
+        }
+        if (image) {
+          news.image = image;
+        }
+        News.updateNews(news, (updateError, updateResponse) => {
+          if (!updateError) {
+            res.status(200).json({
+              message: "News Updated Successfully",
+            });
+          } else {
+            res.status(400).json({
+              message: "Something went wrong",
+            });
+          }
+        });
+      } else {
+        res.status(401).json({
+          message: "You are not authorized to do this",
+        });
+      }
+    } else {
+      res.status(404).json({
+        message: "No News Found!!",
+      });
+    }
+  });
+};

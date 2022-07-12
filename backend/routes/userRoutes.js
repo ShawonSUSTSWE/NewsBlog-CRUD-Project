@@ -2,10 +2,7 @@ const express = require("express");
 const router = express.Router();
 const userController = require("../controllers/userController");
 const { authenticate } = require("../utils/authenticate");
-const {
-  userCreationValidator,
-  userUpdateValidator,
-} = require("../utils/userValidator");
+const { userCreationValidator } = require("../utils/userValidator");
 
 router
   .route("/")

@@ -74,6 +74,21 @@ class News {
       }
     );
   }
+  static updateNews(news, result) {
+    dbConnection.query(
+      "UPDATE tbl_news SET title = ?, category = ?, content = ?, image = ? WHERE newsID = ?",
+      [news.title, news.category, news.content, news.image, news.newsID],
+      (err, res) => {
+        if (err) {
+          console.log("ERROR: ", err);
+          result(err, null);
+        } else {
+          console.log("News updated successfully");
+          result(null, res[0]);
+        }
+      }
+    );
+  }
 }
 
 module.exports = News;
