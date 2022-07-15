@@ -45,29 +45,6 @@ const Header = () => {
           </Box>
         )}
         <Box display="flex" marginLeft="auto">
-          {!isLoggedIn && (
-            <div>
-              {" "}
-              <Button
-                variant="contained"
-                LinkComponent={Link}
-                to="/LogIn"
-                sx={{ margin: 1, borderRadius: 10 }}
-                color="warning"
-              >
-                LOGIN
-              </Button>
-              <Button
-                variant="contained"
-                LinkComponent={Link}
-                to="/SignUp"
-                sx={{ margin: 1, borderRadius: 10 }}
-                color="warning"
-              >
-                SIGNUP
-              </Button>
-            </div>
-          )}
           {isLoggedIn && (
             <Button
               variant="contained"

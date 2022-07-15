@@ -1,11 +1,42 @@
 import { TextField, Typography, Button } from "@mui/material";
 import { Box } from "@mui/system";
-import React from "react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import axios from "axios";
 
 const LogIn = () => {
+  const [inputs, setInputs] = useState({
+    email: "",
+    password: "",
+  });
+  const handleChange = (e) => {
+    setInputs((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(inputs);
+    sendRequest();
+  };
+
+  const sendRequest = async () => {
+    const res = await axios
+      .post("http://localhost:5000/api/v1/users/login", {
+        email: inputs.email,
+        password: inputs.password,
+      })
+      .catch((err) => console.log(err));
+
+    const data = await res.data;
+    return data;
+  };
+
   return (
     <div className="logIn">
-      <form>
+      <form onSubmit={handleSubmit}>
         <Box
           maxWidth="400px"
           display="flex"
@@ -23,20 +54,27 @@ const LogIn = () => {
             Login{" "}
           </Typography>
           <TextField
+            name="email"
+            onChange={handleChange}
+            value={inputs.email}
             type={"email"}
             variant="filled"
             margin="normal"
-            label="Email"
+            placeholder="Email"
           />
           <TextField
+            name="password"
+            onChange={handleChange}
+            value={inputs.password}
             type={"password"}
             variant="filled"
             margin="normal"
-            label="Password"
+            placeholder="Password"
           />
           <br />
           <Box margin={1}>
             <Button
+              type="submit"
               sx={{ mr: 2 }}
               borderRadius="3"
               variant="contained"
@@ -44,7 +82,12 @@ const LogIn = () => {
             >
               Submit
             </Button>
-            <Button borderRadius="3" variant="contained">
+            <Button
+              LinkComponent={Link}
+              to="/signup"
+              borderRadius="3"
+              variant="contained"
+            >
               Sign Up Now!!
             </Button>
           </Box>
