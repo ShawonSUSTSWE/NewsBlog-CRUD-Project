@@ -66,20 +66,6 @@ class User {
       }
     });
   }
-  static delete(id, result) {
-    dbConnection.query(
-      "DELETE FROM employees WHERE id = ?",
-      [id],
-      (err, res) => {
-        if (err) {
-          console.log("error: ", err);
-          result(null, err);
-        } else {
-          result(null, res);
-        }
-      }
-    );
-  }
   static updateUser(user, result) {
     dbConnection.query(
       "UPDATE tbl_user SET name = ?, password = ?, dept = ?, avatar = ? WHERE userID = ?",

@@ -3,10 +3,12 @@ import { AppBar, Toolbar, Typography, Button, Tabs, Tab } from "@mui/material";
 import { Box } from "@mui/system";
 import "./Header.css";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { authActions } from "../../store";
 
 const Header = () => {
   const isLoggedIn = useSelector((state) => state.isLoggedIn);
+  const dispatch = useDispatch();
   const [value, setValue] = useState(0);
   return (
     <AppBar
@@ -47,9 +49,10 @@ const Header = () => {
         <Box display="flex" marginLeft="auto">
           {isLoggedIn && (
             <Button
+              onClick={() => dispatch(authActions.logout())}
               variant="contained"
               LinkComponent={Link}
-              to="/"
+              to="/login"
               sx={{ margin: 1, borderRadius: 10 }}
               color="warning"
             >

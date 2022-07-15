@@ -53,19 +53,17 @@ exports.logIn = (req, res, next) => {
   User.searchForEmail(email, password, (err, res_db) => {
     if (err) {
       res.status(400).json({
-        Error: "Bad Request",
+        message: "Bad Request",
       });
     }
     if (!res_db) {
       res.status(401).json({
-        success: 0,
         data: "Invalid email or password",
       });
     } else {
       if (!bcrypt.compareSync(password, res_db.password)) {
         res.status(401).json({
-          success: 0,
-          data: "Invalid email or password",
+          message: "Invalid email or password",
         });
       } else {
         console.log(res_db);
@@ -83,6 +81,7 @@ exports.logIn = (req, res, next) => {
         res.status(200).json({
           message: "Signed in!!",
           token: token,
+          user: res_db,
         });
       }
     }

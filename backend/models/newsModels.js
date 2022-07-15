@@ -1,5 +1,6 @@
 const dbConnection = require("../config/db_config");
 const { v4: uuidv4 } = require("uuid");
+const User = require("./userModel");
 
 class News {
   constructor(title, category, content, image, creatorID) {
@@ -50,15 +51,18 @@ class News {
     );
   }
   static getAllNews(result) {
-    dbConnection.query("Select * from tbl_news", (err, res) => {
-      if (err) {
-        console.log("error: ", err);
-        result(null, err);
-      } else {
-        console.log("News : ", res);
-        result(null, res);
+    dbConnection.query(
+      "SELECT tbl_news.newsID, tbl_news.title, tbl_news.category, tbl_news.content, tbl_news.image, tbl_news.creatorID, tbl_user.name FROM tbl_news JOIN tbl_user ON tbl_news.creatorID = tbl_user.userID",
+      (err, res) => {
+        if (err) {
+          console.log("error: ", err);
+          result(err, null);
+        } else {
+          console.log("News : ", res);
+          result(null, res);
+        }
       }
-    });
+    );
   }
   static delete(id, result) {
     dbConnection.query(
