@@ -1,0 +1,10 @@
+marquee {
+  background-color: aqua;
+  scroll-amount: 10;
+}
+
+h1 {
+  align-items: center;
+  text-align: center;
+  margin-top: 60px;
+}

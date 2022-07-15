@@ -1,10 +1,13 @@
 import { Button } from "react-bootstrap";
 import React from "react";
+import "./Home.css";
 
 const Home = () => {
   return (
     <div>
-      <Button variant="outline-primary">Log In</Button>
+      <marquee scrollamount="20">
+        <h1>Welcome to beautiful SUST</h1>
+      </marquee>
     </div>
   );
 };
