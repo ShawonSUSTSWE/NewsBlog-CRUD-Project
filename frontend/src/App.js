@@ -16,9 +16,11 @@ import CreateBlog from "./components/CreateBlog/CreateBlog";
 import BlogInfo from "./components/BlogInfo/BlogInfo";
 import Blogs from "./components/Blogs/Blogs";
 import UserBlogs from "./components/UserBlogs/UserBlogs";
+import { useSelector } from "react-redux";
 
 function App() {
-  console.log("Hi");
+  const isLoggedIn = useSelector((state) => state.isLoggedIn);
+  console.log(isLoggedIn);
   return (
     <Router>
       <header>
