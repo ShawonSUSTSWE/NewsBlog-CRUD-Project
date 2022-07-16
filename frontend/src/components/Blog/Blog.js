@@ -13,8 +13,10 @@ import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useStyles } from "../utils";
 
 const Blog = ({ isUser, title, category, content, image, name, id }) => {
+  const classes = useStyles();
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
   const handleEdit = (e) => {
@@ -54,10 +56,14 @@ const Blog = ({ isUser, title, category, content, image, name, id }) => {
       >
         {isUser && (
           <Box display="flex">
-            <IconButton onClick={handleEdit} sx={{ marginLeft: "auto" }}>
+            <IconButton
+              color="warning"
+              onClick={handleEdit}
+              sx={{ marginLeft: "auto" }}
+            >
               <EditIcon />
             </IconButton>
-            <IconButton onClick={handleDelete}>
+            <IconButton color="error" onClick={handleDelete}>
               <DeleteIcon />
             </IconButton>
           </Box>
@@ -74,7 +80,11 @@ const Blog = ({ isUser, title, category, content, image, name, id }) => {
           alt="Image At SUST"
         />
         <CardContent>
-          <Typography variant="body2" color="text.secondary">
+          <Typography
+            className={classes.font}
+            variant="body2"
+            color="text.secondary"
+          >
             {content}
           </Typography>
         </CardContent>

@@ -2,10 +2,12 @@ import { Box, Button, InputLabel, TextField, Typography } from "@mui/material";
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useStyles } from "../utils";
 
 const labelStyles = { mb: 1, mt: 2, fontSize: "24px", fontWeight: "bold" };
 
 const CreateBlog = () => {
+  const classes = useStyles();
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
   console.log(token);
@@ -69,6 +71,7 @@ const CreateBlog = () => {
           marginBottom={"20px"}
         >
           <Typography
+            className={classes.font}
             fontWeight={"bold"}
             padding={3}
             color="grey"
@@ -77,32 +80,44 @@ const CreateBlog = () => {
           >
             Post Your Blog
           </Typography>
-          <InputLabel sx={labelStyles}>Title</InputLabel>
+          <InputLabel className={classes.font} sx={labelStyles}>
+            Title
+          </InputLabel>
           <TextField
+            className={classes.font}
             name="title"
             value={inputs.title}
             onChange={handleChange}
             margin="auto"
             variant="filled"
           />
-          <InputLabel sx={labelStyles}>Category</InputLabel>
+          <InputLabel className={classes.font} sx={labelStyles}>
+            Category
+          </InputLabel>
           <TextField
+            className={classes.font}
             name="category"
             value={inputs.category}
             onChange={handleChange}
             margin="auto"
             variant="filled"
           />
-          <InputLabel sx={labelStyles}>Post</InputLabel>
+          <InputLabel className={classes.font} sx={labelStyles}>
+            Post
+          </InputLabel>
           <TextField
+            className={classes.font}
             name="content"
             value={inputs.content}
             onChange={handleChange}
             margin="auto"
             variant="filled"
           />
-          <InputLabel sx={labelStyles}>ImageURL</InputLabel>
+          <InputLabel className={classes.font} sx={labelStyles}>
+            ImageURL
+          </InputLabel>
           <TextField
+            className={classes.font}
             name="image"
             value={inputs.image}
             onChange={handleChange}

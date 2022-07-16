@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { AppBar, Toolbar, Typography, Button, Tabs, Tab } from "@mui/material";
 import { Box } from "@mui/system";
-import "./Header.css";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { authActions } from "../../store";
+import { useStyles } from "../utils";
 
 const Header = () => {
+  const classes = useStyles();
   const isLoggedIn = useSelector((state) => state.isLoggedIn);
   const dispatch = useDispatch();
   const [value, setValue] = useState(0);
@@ -19,7 +20,7 @@ const Header = () => {
       }}
     >
       <Toolbar>
-        <Typography variant="h4" fontSize="25px">
+        <Typography className={classes.font} variant="h4" fontSize="25px">
           SUST NewsBlog
         </Typography>
         {isLoggedIn && (
@@ -30,18 +31,21 @@ const Header = () => {
               onChange={(e, val) => setValue(val)}
             >
               <Tab
+                className={classes.font}
                 LinkComponent={Link}
                 to="/blogs"
                 label="All Blogs"
                 sx={{ fontSize: "15px" }}
               />
               <Tab
+                className={classes.font}
                 LinkComponent={Link}
                 to="/blogs/user"
                 label="My Blogs"
                 sx={{ fontSize: "15px" }}
               />
               <Tab
+                className={classes.font}
                 LinkComponent={Link}
                 to="/blogs/create"
                 label="Create a Blog"

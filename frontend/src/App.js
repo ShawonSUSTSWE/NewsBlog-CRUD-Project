@@ -28,13 +28,20 @@ function App() {
       </header>
       <main>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/signup" element={<SignUp />} />
-          <Route path="/login" element={<LogIn />} />
-          <Route path="/blogs" element={<Blogs />} />
-          <Route path="/blogs/create" element={<CreateBlog />} />
-          <Route path="/blogs/user" element={<UserBlogs />} />
-          <Route path="/blogs/:blogid" element={<BlogInfo />} />
+          {!isLoggedIn ? (
+            <>
+              <Route path="/" element={<Home />} />
+              <Route path="/signup" element={<SignUp />} />
+              <Route path="/login" element={<LogIn />} />
+            </>
+          ) : (
+            <>
+              <Route path="/blogs" element={<Blogs />} />
+              <Route path="/blogs/create" element={<CreateBlog />} />
+              <Route path="/blogs/user" element={<UserBlogs />} />
+              <Route path="/blogs/:blogid" element={<BlogInfo />} />
+            </>
+          )}
         </Routes>
       </main>
     </Router>
