@@ -34,7 +34,7 @@ function App() {
           <Route path="/blogs" element={<Blogs />} />
           <Route path="/blogs/create" element={<CreateBlog />} />
           <Route path="/blogs/user" element={<UserBlogs />} />
-          <Route path="/blogs/:id/:blogid" element={<BlogInfo />} />
+          <Route path="/blogs/:blogid" element={<BlogInfo />} />
         </Routes>
       </main>
     </Router>

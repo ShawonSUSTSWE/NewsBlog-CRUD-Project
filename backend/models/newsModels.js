@@ -12,13 +12,21 @@ class News {
     this.creatorID = creatorID;
   }
   static publishNews(newNews, result) {
+    console.log(newNews);
     dbConnection.query("INSERT INTO tbl_news SET ?", newNews, (err, res) => {
       if (err) {
         console.log("Error: ", err);
         result(err, null);
       } else {
         console.log("News published Successfully");
-        result(null, res);
+        //console.log(newNews.id);
+        this.getNewsbyID(newNews.newsID, (error, news) => {
+          if (error) {
+            console.log(error);
+          } else {
+            result(null, news);
+          }
+        });
       }
     });
   }
@@ -31,6 +39,7 @@ class News {
           console.log(err);
           result(err, null);
         } else {
+          //console.log(res);
           result(null, res[0]);
         }
       }
@@ -45,7 +54,7 @@ class News {
           console.log(err);
           result(err, null);
         } else {
-          console.log(res);
+          //console.log(res);
           result(null, res);
         }
       }
@@ -59,7 +68,7 @@ class News {
           console.log("error: ", err);
           result(err, null);
         } else {
-          console.log("News : ", res);
+          //console.log("News : ", res);
           result(null, res);
         }
       }

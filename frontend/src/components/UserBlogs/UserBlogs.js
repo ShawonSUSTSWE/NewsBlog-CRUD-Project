@@ -4,7 +4,7 @@ import axios from "axios";
 
 const UserBlogs = () => {
   const token = localStorage.getItem("token");
-  //console.log(token);
+  console.log(token);
   const [blogs, setBlogs] = useState();
   const sendRequest = async () => {
     const res = await axios
@@ -27,6 +27,8 @@ const UserBlogs = () => {
       {blogs &&
         blogs.map((blog, index) => (
           <Blog
+            id={blog.newsID}
+            isUser={true}
             title={blog.title}
             category={blog.category}
             content={blog.content}

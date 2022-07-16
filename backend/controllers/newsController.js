@@ -9,7 +9,7 @@ exports.publishNews = (req, res, next) => {
   checker(validationResult(req));
   const { title, category, content, image } = req.body;
   const user = req.userData;
-  console.log(user.userID);
+  console.log("Publisher: " + user.userID);
   const news = new News(title, category, content, image, user.userID);
   News.publishNews(news, (err, result) => {
     if (err) {
@@ -34,6 +34,21 @@ exports.getAllNews = (req, res, next) => {
   });
 };
 
+exports.getNews = (req, res, next) => {
+  News.getNewsbyID(req.params.uuid, (err, response) => {
+    if (err) {
+      res.status(404).json({
+        message: "Failed",
+      });
+    } else {
+      res.status(200).json({
+        message: "Successful",
+        data: response,
+      });
+    }
+  });
+};
+
 exports.getNewsbyUser = (req, res, next) => {
   News.getNewsbyUser(req.params.uuid, (err, response) => {
     if (err) {
@@ -45,8 +60,8 @@ exports.getNewsbyUser = (req, res, next) => {
 };
 
 exports.getOwnNews = (req, res, next) => {
-  console.log("GET YOUR NEWS");
-  console.log(req.userData);
+  //console.log("GET YOUR NEWS");
+  //console.log(req.userData);
   const { userID } = req.userData;
   console.log(userID);
   News.getNewsbyUser(userID, (err, response) => {

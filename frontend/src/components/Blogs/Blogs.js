@@ -20,6 +20,8 @@ const Blogs = () => {
       {blogs &&
         blogs.map((blog, index) => (
           <Blog
+            id={blog.newsID}
+            isUser={false}
             title={blog.title}
             category={blog.category}
             content={blog.content}

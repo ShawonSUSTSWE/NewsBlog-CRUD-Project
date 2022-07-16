@@ -1,9 +1,14 @@
 import { Box, Button, InputLabel, TextField, Typography } from "@mui/material";
 import React, { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const labelStyles = { mb: 1, mt: 2, fontSize: "24px", fontWeight: "bold" };
 
 const CreateBlog = () => {
+  const navigate = useNavigate();
+  const token = localStorage.getItem("token");
+  console.log(token);
   const [inputs, setInputs] = useState({
     title: "",
     category: "",
@@ -18,9 +23,33 @@ const CreateBlog = () => {
     }));
   };
 
+  const sendRequest = async () => {
+    const res = await axios
+      .post(
+        "http://localhost:5000/api/v1/news/",
+        {
+          title: inputs.title,
+          category: inputs.category,
+          content: inputs.content,
+          image: inputs.image,
+        },
+        {
+          headers: {
+            Authorization: token,
+          },
+        }
+      )
+      .catch((err) => console.log(err));
+    const data = await res.data;
+    return data;
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(inputs);
+    sendRequest()
+      .then((data) => console.log(data))
+      .then(() => navigate("/blogs/user"));
   };
 
   return (
