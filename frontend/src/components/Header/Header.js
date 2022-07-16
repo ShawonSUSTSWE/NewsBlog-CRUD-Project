@@ -37,12 +37,16 @@ const Header = () => {
               />
               <Tab
                 LinkComponent={Link}
-                to="/blogs/:id"
+                to="/blogs/user"
                 label="My Blogs"
                 sx={{ fontSize: "15px" }}
               />
-              {/* <Tab label = "My Blog" />
-                <Tab label = "My Blog" /> */}
+              <Tab
+                LinkComponent={Link}
+                to="/blogs/create"
+                label="Create a Blog"
+                sx={{ fontSize: "15px" }}
+              />
             </Tabs>
           </Box>
         )}
@@ -51,6 +55,7 @@ const Header = () => {
             <Button
               onClick={() => {
                 setValue(0);
+                localStorage.setItem("token", "");
                 dispatch(authActions.logout());
               }}
               variant="contained"

@@ -93,7 +93,6 @@ exports.logIn = (req, res, next) => {
         res.status(200).json({
           message: "Signed in!!",
           token: token,
-          user: res_db,
         });
       }
     }

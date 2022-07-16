@@ -1,7 +1,100 @@
-import React from "react";
+import { Box, Button, InputLabel, TextField, Typography } from "@mui/material";
+import React, { useState } from "react";
+
+const labelStyles = { mb: 1, mt: 2, fontSize: "24px", fontWeight: "bold" };
 
 const CreateBlog = () => {
-  return <div>Create a Blog</div>;
+  const [inputs, setInputs] = useState({
+    title: "",
+    category: "",
+    content: "",
+    image: "",
+  });
+
+  const handleChange = (e) => {
+    setInputs((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(inputs);
+  };
+
+  return (
+    <div>
+      <form onSubmit={handleSubmit}>
+        <Box
+          border={3}
+          borderColor="linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,68,121,0.9923319669664741) 25%, rgba(66,173,221,1) 71%, rgba(0,212,255,1) 100%)"
+          borderRadius={10}
+          boxShadow="10px 10px 20px #ccc"
+          padding={3}
+          margin={"auto"}
+          display="flex"
+          flexDirection={"column"}
+          width={"80%"}
+          marginTop="20px"
+          marginBottom={"20px"}
+        >
+          <Typography
+            fontWeight={"bold"}
+            padding={3}
+            color="grey"
+            variant="h2"
+            textAlign={"center"}
+          >
+            Post Your Blog
+          </Typography>
+          <InputLabel sx={labelStyles}>Title</InputLabel>
+          <TextField
+            name="title"
+            value={inputs.title}
+            onChange={handleChange}
+            margin="auto"
+            variant="filled"
+          />
+          <InputLabel sx={labelStyles}>Category</InputLabel>
+          <TextField
+            name="category"
+            value={inputs.category}
+            onChange={handleChange}
+            margin="auto"
+            variant="filled"
+          />
+          <InputLabel sx={labelStyles}>Post</InputLabel>
+          <TextField
+            name="content"
+            value={inputs.content}
+            onChange={handleChange}
+            margin="auto"
+            variant="filled"
+          />
+          <InputLabel sx={labelStyles}>ImageURL</InputLabel>
+          <TextField
+            name="image"
+            value={inputs.image}
+            onChange={handleChange}
+            margin="auto"
+            variant="filled"
+          />
+          <Button
+            sx={{
+              mt: 2,
+              width: "20%",
+              borderRadius: 4,
+            }}
+            variant="contained"
+            type="submit"
+          >
+            Post
+          </Button>
+        </Box>
+      </form>
+    </div>
+  );
 };
 
 export default CreateBlog;
