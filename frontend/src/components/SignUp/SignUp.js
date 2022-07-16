@@ -26,6 +26,7 @@ const SignUp = () => {
     e.preventDefault();
     console.log(inputs);
     sendRequest()
+      .then((data) => localStorage.setItem("token", "Bearer " + data.token))
       .then(() => dispatch(authActions.login()))
       .then(() => navigate("/blogs"));
   };

@@ -21,7 +21,13 @@ class User {
           result(err, null);
         } else {
           console.log("User created Successfully");
-          result(null, res);
+          this.searchForEmail(newUser.email, (err, user) => {
+            if (err) {
+              console.log(err);
+            } else {
+              result(null, user);
+            }
+          });
         }
       });
     });
@@ -41,7 +47,7 @@ class User {
       }
     );
   }
-  static searchForEmail(email, password, result) {
+  static searchForEmail(email, result) {
     const myQuery = "SELECT * FROM tbl_user WHERE email = ?";
     dbConnection.query(myQuery, email, (err, res, field) => {
       if (err) {
@@ -59,7 +65,7 @@ class User {
     dbConnection.query("Select * from tbl_user", (err, res) => {
       if (err) {
         console.log("error: ", err);
-        result(null, err);
+        result(err, null);
       } else {
         console.log("users : ", res);
         result(null, res);

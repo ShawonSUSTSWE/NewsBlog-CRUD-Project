@@ -18,9 +18,21 @@ exports.createUser = (req, res, next) => {
     if (err) {
       res.status(500).send(err);
     } else {
+      console.log(resultuser);
+      let token = jsonwebtoken.sign(
+        {
+          userID: resultuser.userID,
+          email: resultuser.email,
+          name: resultuser.name,
+        },
+        process.env.JWT_KEY,
+        {
+          expiresIn: "7d",
+        }
+      );
       res.status(201).json({
         message: "Successfully created",
-        data: resultuser,
+        token: token,
       });
     }
   });
@@ -50,7 +62,7 @@ exports.getUser = (req, res, next) => {
 exports.logIn = (req, res, next) => {
   checker(validationResult(req));
   const { email, password } = req.body;
-  User.searchForEmail(email, password, (err, res_db) => {
+  User.searchForEmail(email, (err, res_db) => {
     if (err) {
       res.status(400).json({
         message: "Bad Request",

@@ -5,6 +5,7 @@ const { newsPublishValidator } = require("../utils/newsValidator");
 
 const router = express.Router();
 router.get("/", newsController.getAllNews);
+router.get("/mynews", authenticate, newsController.getOwnNews);
 router.get("/:uuid", newsController.getNewsbyUser);
 
 router.use(authenticate);

@@ -3,6 +3,7 @@
 const News = require("../models/newsModels");
 const { validationResult } = require("express-validator");
 const { checker } = require("../utils/validationChecker");
+const User = require("../models/userModel");
 
 exports.publishNews = (req, res, next) => {
   checker(validationResult(req));
@@ -43,6 +44,20 @@ exports.getNewsbyUser = (req, res, next) => {
   });
 };
 
+exports.getOwnNews = (req, res, next) => {
+  console.log("GET YOUR NEWS");
+  console.log(req.userData);
+  const { userID } = req.userData;
+  console.log(userID);
+  News.getNewsbyUser(userID, (err, response) => {
+    if (err) {
+      res.status(400).json(err);
+    } else {
+      res.status(200).json(response);
+    }
+  });
+};
+
 exports.deleteNews = (req, res, next) => {
   const newsID = req.params.uuid;
   const { userID } = req.userData;
@@ -71,6 +86,7 @@ exports.deleteNews = (req, res, next) => {
 };
 
 exports.updateNews = (req, res, next) => {
+  console.log("UPDATE");
   const { userID } = req.userData;
   const newsID = req.params.uuid;
   const { title, category, content, image } = req.body;

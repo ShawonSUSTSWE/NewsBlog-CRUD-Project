@@ -38,13 +38,14 @@ class News {
   }
   static getNewsbyUser(id, result) {
     dbConnection.query(
-      "SELECT * FROM tbl_news WHERE creatorID = ?",
+      "SELECT tbl_news.newsID, tbl_news.title, tbl_news.category, tbl_news.content, tbl_news.image, tbl_news.creatorID, tbl_user.name FROM tbl_news JOIN tbl_user ON tbl_news.creatorID = tbl_user.userID WHERE creatorID = ?",
       id,
       (err, res) => {
         if (err) {
           console.log(err);
           result(err, null);
         } else {
+          console.log(res);
           result(null, res);
         }
       }

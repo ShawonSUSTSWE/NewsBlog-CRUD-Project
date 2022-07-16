@@ -49,7 +49,10 @@ const Header = () => {
         <Box display="flex" marginLeft="auto">
           {isLoggedIn && (
             <Button
-              onClick={() => dispatch(authActions.logout())}
+              onClick={() => {
+                setValue(0);
+                dispatch(authActions.logout());
+              }}
               variant="contained"
               LinkComponent={Link}
               to="/login"
