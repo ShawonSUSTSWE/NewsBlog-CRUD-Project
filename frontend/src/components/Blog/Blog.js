@@ -12,7 +12,7 @@ import React from "react";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useNavigate } from "react-router-dom";
-import { axios } from "axios";
+import axios from "axios";
 
 const Blog = ({ isUser, title, category, content, image, name, id }) => {
   const navigate = useNavigate();
@@ -30,12 +30,13 @@ const Blog = ({ isUser, title, category, content, image, name, id }) => {
       })
       .catch((err) => console.log(err));
     const data = await res.data;
+    return data;
   };
 
   const handleDelete = (e) => {
     deleteRequest()
       .then((data) => console.log(data))
-      .then(navigate("/blogs/user"));
+      .then(() => navigate("/blogs"));
   };
   console.log(image);
   return (
