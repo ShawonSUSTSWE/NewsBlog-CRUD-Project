@@ -1,450 +1,485 @@
 {
-  "info": {
-    "_postman_id": "a2dcd40d-2087-4ac4-80c6-1a19750bfa75",
-    "name": "Newsblog_CRUD",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "_exporter_id": "20447145"
-  },
-  "item": [
-    {
-      "name": "GET All users",
-      "protocolProfileBehavior": {
-        "disableBodyPruning": true
-      },
-      "request": {
-        "method": "GET",
-        "header": [],
-        "body": {
-          "mode": "urlencoded",
-          "urlencoded": [
-            {
-              "key": "name",
-              "value": "Shawon",
-              "type": "text"
-            },
-            {
-              "key": "email",
-              "value": "shawon12345@gmail.com",
-              "type": "text"
-            },
-            {
-              "key": "password",
-              "value": "shawon213",
-              "type": "text"
-            },
-            {
-              "key": "avatar",
-              "value": "shawonjpg",
-              "type": "text"
-            },
-            {
-              "key": "dept",
-              "value": "SWE",
-              "type": "text"
-            }
-          ]
-        },
-        "url": {
-          "raw": "http://localhost:5000/api/v1/users/",
-          "protocol": "http",
-          "host": ["localhost"],
-          "port": "5000",
-          "path": ["api", "v1", "users", ""]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "Create a user",
-      "request": {
-        "method": "POST",
-        "header": [],
-        "body": {
-          "mode": "urlencoded",
-          "urlencoded": [
-            {
-              "key": "name",
-              "value": "Shawon",
-              "type": "text"
-            },
-            {
-              "key": "email",
-              "value": "shawon12345@gmail.com",
-              "type": "text"
-            },
-            {
-              "key": "password",
-              "value": "shawon213",
-              "type": "text"
-            },
-            {
-              "key": "avatar",
-              "value": "shawonjpg",
-              "type": "text"
-            },
-            {
-              "key": "dept",
-              "value": "SWE",
-              "type": "text"
-            }
-          ]
-        },
-        "url": {
-          "raw": "http://localhost:5000/api/v1/users/",
-          "protocol": "http",
-          "host": ["localhost"],
-          "port": "5000",
-          "path": ["api", "v1", "users", ""]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "Log In",
-      "request": {
-        "method": "POST",
-        "header": [],
-        "body": {
-          "mode": "urlencoded",
-          "urlencoded": [
-            {
-              "key": "name",
-              "value": "Shawon",
-              "type": "text",
-              "disabled": true
-            },
-            {
-              "key": "email",
-              "value": "shawon12345@gmail.com",
-              "type": "text"
-            },
-            {
-              "key": "password",
-              "value": "shawon213",
-              "type": "text"
-            },
-            {
-              "key": "avatar",
-              "value": "shawonjpg",
-              "type": "text",
-              "disabled": true
-            },
-            {
-              "key": "dept",
-              "value": "SWE",
-              "type": "text",
-              "disabled": true
-            }
-          ]
-        },
-        "url": {
-          "raw": "http://localhost:5000/api/v1/users/login",
-          "protocol": "http",
-          "host": ["localhost"],
-          "port": "5000",
-          "path": ["api", "v1", "users", "login"]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "Get a specific user details",
-      "request": {
-        "method": "GET",
-        "header": [],
-        "url": {
-          "raw": "http://localhost:5000/api/v1/users/30db6228-4fd7-408c-bc95-20986d7d8d2d",
-          "protocol": "http",
-          "host": ["localhost"],
-          "port": "5000",
-          "path": ["api", "v1", "users", "30db6228-4fd7-408c-bc95-20986d7d8d2d"]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "Get All News",
-      "protocolProfileBehavior": {
-        "disableBodyPruning": true
-      },
-      "request": {
-        "method": "GET",
-        "header": [],
-        "body": {
-          "mode": "urlencoded",
-          "urlencoded": [
-            {
-              "key": "title",
-              "value": "Hello to SWE",
-              "type": "text"
-            },
-            {
-              "key": "content",
-              "value": "Hello I am from SUST SWE",
-              "type": "text"
-            },
-            {
-              "key": "category",
-              "value": "vlog",
-              "type": "text"
-            },
-            {
-              "key": "image",
-              "value": "swejpg",
-              "type": "text"
-            }
-          ]
-        },
-        "url": {
-          "raw": "http://localhost:5000/api/v1/news/",
-          "protocol": "http",
-          "host": ["localhost"],
-          "port": "5000",
-          "path": ["api", "v1", "news", ""]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "Get a specific news",
-      "request": {
-        "method": "GET",
-        "header": [],
-        "url": {
-          "raw": "http://localhost:5000/api/v1/news/4f41f953-ab3e-4539-a0ef-4ceb20f0bda7",
-          "protocol": "http",
-          "host": ["localhost"],
-          "port": "5000",
-          "path": ["api", "v1", "news", "4f41f953-ab3e-4539-a0ef-4ceb20f0bda7"]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "Publish a News",
-      "request": {
-        "auth": {
-          "type": "bearer",
-          "bearer": [
-            {
-              "key": "token",
-              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiIzMGRiNjIyOC00ZmQ3LTQwOGMtYmM5NS0yMDk4NmQ3ZDhkMmQiLCJlbWFpbCI6InNoYXdvbjEyQGdtYWlsLmNvbSIsIm5hbWUiOiJTaGF3b24iLCJpYXQiOjE2NTQ5Njc5ODgsImV4cCI6MTY1NTU3Mjc4OH0.LRl3XYr1i9zrElRE2FjkY2seD9TzQha_ae0Aj7KPsKY",
-              "type": "string"
-            }
-          ]
-        },
-        "method": "POST",
-        "header": [],
-        "body": {
-          "mode": "urlencoded",
-          "urlencoded": [
-            {
-              "key": "title",
-              "value": "WC to SUST",
-              "type": "text"
-            },
-            {
-              "key": "category",
-              "value": "vlog",
-              "type": "text"
-            },
-            {
-              "key": "content",
-              "value": "HIIIIIIII !! This is SUST",
-              "type": "text"
-            },
-            {
-              "key": "image",
-              "value": "sust1jpg",
-              "type": "text"
-            }
-          ]
-        },
-        "url": {
-          "raw": "http://localhost:5000/api/v1/news/",
-          "protocol": "http",
-          "host": ["localhost"],
-          "port": "5000",
-          "path": ["api", "v1", "news", ""]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "User Update",
-      "request": {
-        "auth": {
-          "type": "bearer",
-          "bearer": [
-            {
-              "key": "token",
-              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiIzMGRiNjIyOC00ZmQ3LTQwOGMtYmM5NS0yMDk4NmQ3ZDhkMmQiLCJlbWFpbCI6InNoYXdvbjEyQGdtYWlsLmNvbSIsIm5hbWUiOiJzaGF3b24iLCJpYXQiOjE2NTcyOTcwNzEsImV4cCI6MTY1NzkwMTg3MX0.IyRTmyNVQ5M-KlapdowTW_vVL1eQEVmJRS9vejKO8So",
-              "type": "string"
-            }
-          ]
-        },
-        "method": "PUT",
-        "header": [],
-        "body": {
-          "mode": "urlencoded",
-          "urlencoded": [
-            {
-              "key": "name",
-              "value": "shawon",
-              "type": "text"
-            },
-            {
-              "key": "newPassword",
-              "value": "shawon12",
-              "type": "text"
-            },
-            {
-              "key": "dept",
-              "value": "SWE",
-              "type": "text"
-            },
-            {
-              "key": "avatar",
-              "value": "",
-              "type": "text"
-            },
-            {
-              "key": "oldPassword",
-              "value": "shawon123",
-              "type": "text"
-            }
-          ]
-        },
-        "url": {
-          "raw": "http://localhost:5000/api/v1/users/",
-          "protocol": "http",
-          "host": ["localhost"],
-          "port": "5000",
-          "path": ["api", "v1", "users", ""]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "Update News",
-      "request": {
-        "auth": {
-          "type": "bearer",
-          "bearer": [
-            {
-              "key": "token",
-              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiIzMGRiNjIyOC00ZmQ3LTQwOGMtYmM5NS0yMDk4NmQ3ZDhkMmQiLCJlbWFpbCI6InNoYXdvbjEyQGdtYWlsLmNvbSIsIm5hbWUiOiJzaGF3b24iLCJpYXQiOjE2NTc2MzQ1NDAsImV4cCI6MTY1ODIzOTM0MH0.4wCcyTicWAv6bgDMJQNY9AOLDbqgMdIWm2tjb626QlE",
-              "type": "string"
-            }
-          ]
-        },
-        "method": "PUT",
-        "header": [],
-        "body": {
-          "mode": "urlencoded",
-          "urlencoded": [
-            {
-              "key": "title",
-              "value": "",
-              "type": "text"
-            },
-            {
-              "key": "category",
-              "value": "document",
-              "type": "text"
-            },
-            {
-              "key": "content",
-              "value": "",
-              "type": "text"
-            },
-            {
-              "key": "image",
-              "value": "sust5.jpg",
-              "type": "text"
-            }
-          ]
-        },
-        "url": {
-          "raw": "http://localhost:5000/api/v1/news/31c9a3d6-37d4-477f-9392-4c1d7ae4f4d6",
-          "protocol": "http",
-          "host": ["localhost"],
-          "port": "5000",
-          "path": ["api", "v1", "news", "31c9a3d6-37d4-477f-9392-4c1d7ae4f4d6"]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "Delete a News",
-      "request": {
-        "auth": {
-          "type": "bearer",
-          "bearer": [
-            {
-              "key": "token",
-              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiIzMGRiNjIyOC00ZmQ3LTQwOGMtYmM5NS0yMDk4NmQ3ZDhkMmQiLCJlbWFpbCI6InNoYXdvbjEyQGdtYWlsLmNvbSIsIm5hbWUiOiJzaGF3b24iLCJpYXQiOjE2NTc2MzQ1NDAsImV4cCI6MTY1ODIzOTM0MH0.4wCcyTicWAv6bgDMJQNY9AOLDbqgMdIWm2tjb626QlE",
-              "type": "string"
-            }
-          ]
-        },
-        "method": "DELETE",
-        "header": [],
-        "url": {
-          "raw": "http://localhost:5000/api/v1/news/31c9a3d6-37d4-477f-9392-4c1d7ae4f4d6",
-          "protocol": "http",
-          "host": ["localhost"],
-          "port": "5000",
-          "path": ["api", "v1", "news", "31c9a3d6-37d4-477f-9392-4c1d7ae4f4d6"]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "Users's own Blogs",
-      "request": {
-        "auth": {
-          "type": "bearer",
-          "bearer": [
-            {
-              "key": "token",
-              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiIzMGRiNjIyOC00ZmQ3LTQwOGMtYmM5NS0yMDk4NmQ3ZDhkMmQiLCJlbWFpbCI6InNoYXdvbjEyQGdtYWlsLmNvbSIsIm5hbWUiOiJzaGF3b24iLCJpYXQiOjE2NTc5NDkxMzIsImV4cCI6MTY1ODU1MzkzMn0.KaEfpTywuGPxJfYXUYHp1MMvs4KbwN82rAbS8pi0-wU",
-              "type": "string"
-            }
-          ]
-        },
-        "method": "GET",
-        "header": [],
-        "url": {
-          "raw": "http://localhost:5000/api/v1/news/mynews",
-          "protocol": "http",
-          "host": ["localhost"],
-          "port": "5000",
-          "path": ["api", "v1", "news", "mynews"]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "Get a specific user's news",
-      "request": {
-        "method": "GET",
-        "header": [],
-        "url": {
-          "raw": "http://localhost:5000/api/v1/news/user/03449d40-1bcc-48b4-9532-214d3e583008",
-          "protocol": "http",
-          "host": ["localhost"],
-          "port": "5000",
-          "path": [
-            "api",
-            "v1",
-            "news",
-            "user",
-            "03449d40-1bcc-48b4-9532-214d3e583008"
-          ]
-        }
-      },
-      "response": []
-    }
-  ]
+	"info": {
+		"_postman_id": "a2dcd40d-2087-4ac4-80c6-1a19750bfa75",
+		"name": "Newsblog_CRUD",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20447145"
+	},
+	"item": [
+		{
+			"name": "GET All users",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/v1/users/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"v1",
+						"users",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create a user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "Shawon",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "shawon12345@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "shawon213",
+							"type": "text"
+						},
+						{
+							"key": "avatar",
+							"value": "shawonjpg",
+							"type": "text"
+						},
+						{
+							"key": "dept",
+							"value": "SWE",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/v1/users/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"v1",
+						"users",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Log In",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "Shawon",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "email",
+							"value": "shawon12@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "shawon12",
+							"type": "text"
+						},
+						{
+							"key": "avatar",
+							"value": "shawonjpg",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "dept",
+							"value": "SWE",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/v1/users/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"v1",
+						"users",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get a specific user details",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/v1/users/30db6228-4fd7-408c-bc95-20986d7d8d2d",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"v1",
+						"users",
+						"30db6228-4fd7-408c-bc95-20986d7d8d2d"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All News",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/v1/news/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"v1",
+						"news",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get a specific news",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/v1/news/059d6150-d739-475c-8cc4-745be63f4c1c",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"v1",
+						"news",
+						"059d6150-d739-475c-8cc4-745be63f4c1c"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Publish a News",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiIzMGRiNjIyOC00ZmQ3LTQwOGMtYmM5NS0yMDk4NmQ3ZDhkMmQiLCJlbWFpbCI6InNoYXdvbjEyQGdtYWlsLmNvbSIsIm5hbWUiOiJzaGF3b24iLCJpYXQiOjE2NTc2MzQ1NDAsImV4cCI6MTY1ODIzOTM0MH0.4wCcyTicWAv6bgDMJQNY9AOLDbqgMdIWm2tjb626QlE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "title",
+							"value": "Return",
+							"type": "text"
+						},
+						{
+							"key": "category",
+							"value": "DOCUMENTARY",
+							"type": "text"
+						},
+						{
+							"key": "content",
+							"value": "After 7 years, I am bact at SUST!",
+							"type": "text"
+						},
+						{
+							"key": "image",
+							"value": "sust.jpg",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/v1/news/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"v1",
+						"news",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User Update",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiIzMGRiNjIyOC00ZmQ3LTQwOGMtYmM5NS0yMDk4NmQ3ZDhkMmQiLCJlbWFpbCI6InNoYXdvbjEyQGdtYWlsLmNvbSIsIm5hbWUiOiJzaGF3b24iLCJpYXQiOjE2NTcyOTcwNzEsImV4cCI6MTY1NzkwMTg3MX0.IyRTmyNVQ5M-KlapdowTW_vVL1eQEVmJRS9vejKO8So",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "shawon",
+							"type": "text"
+						},
+						{
+							"key": "newPassword",
+							"value": "shawon12",
+							"type": "text"
+						},
+						{
+							"key": "dept",
+							"value": "SWE",
+							"type": "text"
+						},
+						{
+							"key": "avatar",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "oldPassword",
+							"value": "shawon123",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/v1/users/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"v1",
+						"users",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update News",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiIzMGRiNjIyOC00ZmQ3LTQwOGMtYmM5NS0yMDk4NmQ3ZDhkMmQiLCJlbWFpbCI6InNoYXdvbjEyQGdtYWlsLmNvbSIsIm5hbWUiOiJzaGF3b24iLCJpYXQiOjE2NTc2MzQ1NDAsImV4cCI6MTY1ODIzOTM0MH0.4wCcyTicWAv6bgDMJQNY9AOLDbqgMdIWm2tjb626QlE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "title",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "category",
+							"value": "document",
+							"type": "text"
+						},
+						{
+							"key": "content",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "image",
+							"value": "sust4.jpg",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/v1/news/31c9a3d6-37d4-477f-9392-4c1d7ae4f4d6",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"v1",
+						"news",
+						"31c9a3d6-37d4-477f-9392-4c1d7ae4f4d6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete a News",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiIzMGRiNjIyOC00ZmQ3LTQwOGMtYmM5NS0yMDk4NmQ3ZDhkMmQiLCJlbWFpbCI6InNoYXdvbjEyQGdtYWlsLmNvbSIsIm5hbWUiOiJzaGF3b24iLCJpYXQiOjE2NTc2MzQ1NDAsImV4cCI6MTY1ODIzOTM0MH0.4wCcyTicWAv6bgDMJQNY9AOLDbqgMdIWm2tjb626QlE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/v1/news/31c9a3d6-37d4-477f-9392-4c1d7ae4f4d6",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"v1",
+						"news",
+						"31c9a3d6-37d4-477f-9392-4c1d7ae4f4d6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Users's own Blogs",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiIzMGRiNjIyOC00ZmQ3LTQwOGMtYmM5NS0yMDk4NmQ3ZDhkMmQiLCJlbWFpbCI6InNoYXdvbjEyQGdtYWlsLmNvbSIsIm5hbWUiOiJzaGF3b24iLCJpYXQiOjE2NTc5NDkxMzIsImV4cCI6MTY1ODU1MzkzMn0.KaEfpTywuGPxJfYXUYHp1MMvs4KbwN82rAbS8pi0-wU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/v1/news/mynews",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"v1",
+						"news",
+						"mynews"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get a specific user's news",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/v1/news/user/30db6228-4fd7-408c-bc95-20986d7d8d2d",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"v1",
+						"news",
+						"user",
+						"30db6228-4fd7-408c-bc95-20986d7d8d2d"
+					]
+				}
+			},
+			"response": []
+		}
+	]
 }
